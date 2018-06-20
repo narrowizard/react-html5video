@@ -50,13 +50,17 @@ export default (
 
         bindEventsToUpdateState() {
             EVENTS.forEach(event => {
-                this.videoEl.addEventListener(event.toLowerCase(), this.updateState);
+                if(this.videoEl.addEventListener){
+                    this.videoEl.addEventListener(event.toLowerCase(), this.updateState);
+                }else{
+                    this.videoEl.attachEvent("on" + event.toLowerCase(), this.updateState);
+                }
             });
 
             TRACKEVENTS.forEach(event => {
                 // TODO: JSDom does not have this method on
                 // `textTracks`. Investigate so we can test this without this check.
-                this.videoEl.textTracks.addEventListener
+                this.videoEl.textTracks && this.videoEl.textTracks.addEventListener
                 && this.videoEl.textTracks.addEventListener(event.toLowerCase(), this.updateState);
             });
 
@@ -68,26 +72,28 @@ export default (
             const sources = this.videoEl.getElementsByTagName('source');
             if (sources.length) {
                 const lastSource = sources[sources.length - 1];
-                lastSource.addEventListener('error', this.updateState);
+                lastSource.addEventListener ? lastSource.addEventListener('error', this.updateState) : lastSource.attachEvent('error', this.updateState);
             }
         }
 
         unbindEvents() {
             EVENTS.forEach(event => {
-                this.videoEl.removeEventListener(event.toLowerCase(), this.updateState);
+                this.videoEl.removeEventListener ? this.videoEl.removeEventListener(event.toLowerCase(), this.updateState) :
+                    this.videoEl.detachEvent("on" + event.toLowerCase(), this.updateState);
             });
 
             TRACKEVENTS.forEach(event => {
                 // TODO: JSDom does not have this method on
                 // `textTracks`. Investigate so we can test this without this check.
-                this.videoEl.textTracks.removeEventListener
+                this.videoEl.textTracks && this.videoEl.textTracks.removeEventListener
                 && this.videoEl.textTracks.removeEventListener(event.toLowerCase(), this.updateState);
             });
 
             const sources = this.videoEl.getElementsByTagName('source');
             if (sources.length) {
                 const lastSource = sources[sources.length - 1];
-                lastSource.removeEventListener('error', this.updateState);
+                lastSource.removeEventListener ? lastSource.removeEventListener('error', this.updateState) :
+                lastSource.detachEvent('onerror', this.updateState) ;
             }
         }
 
