@@ -1,5 +1,7 @@
 .component {
     position: relative;
+    float: right;
+    height: 34px;
 }
 
 .component:hover {

@@ -1,5 +1,11 @@
 # react-html5video
 
+## forked
+to support ie9   
++ hock `addEventListener` method.
++ change flex box to `display:block`, so you need change styles manually after extending it.
+
+## summary
 A customizeable HoC (Higher Order Component) for HTML5 Video that allows custom and configurable controls with i18n and a11y.
 
 V2 API has changed and is not backwards compatible. You can find the old documentation [here](https://github.com/mderrick/react-html5video/blob/1.4.0/README.md).

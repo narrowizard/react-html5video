@@ -1,0 +1,40 @@
+{
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true,
+        "jest": true,
+        "jasmine": true
+    },
+    "extends": "eslint:recommended",
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "quotes": [
+            0
+        ],
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+        "no-console": [
+            0
+        ],
+        "no-unused-vars": [
+            0
+        ],
+        "no-mixed-spaces-and-tabs": [
+            0
+        ],
+        "no-unexpected-multiline":[0],
+        "no-sparse-arrays":[0]
+    }
+}

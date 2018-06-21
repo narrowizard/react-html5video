@@ -1,4 +1,7 @@
-.component {}
+.component {
+    float: right;
+    height: 34px;
+}
 
 .component:hover {
     background-color: #000;

@@ -1,5 +1,8 @@
 .component {
-    position: relative;
+    position: absolute;
+    left: 34px;
+    height: 34px;
+    right: 144px;
 }
 
 .track {
